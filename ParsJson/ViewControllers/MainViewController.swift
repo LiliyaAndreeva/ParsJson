@@ -27,40 +27,19 @@ enum Alert {
 
 final class MainViewController: UIViewController {
     
-    // MARK: - Private Methods
-    private func showAlert(withStatus status: Alert) {
-        let alert = UIAlertController(title: status.title, message: status.message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default)
-        alert.addAction(okAction)
-        DispatchQueue.main.async { [unowned self] in
-            present(alert, animated: true)
+    private var users = [User]()
+  
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemCyan
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showUsers" {
+            guard let usersTVC = segue.destination as? UsersTableViewController else { return }
+            usersTVC.fetchUsers()
         }
     }
     
-    @IBAction func parsJsonButtonPressed(_ sender: UIButton) {
-        fetchParsJson()
-    }
 }
 
-// MARK: - Extention
-extension MainViewController {
-    private func fetchParsJson() {
-        
-        URLSession.shared.dataTask(with: URL(string:"https://random-data-api.com/api/v2/users")!) { data, _, error in
-            guard let data = data else {
-                print(error?.localizedDescription ?? "No error describtion" )
-                return
-            }
-            
-            do {
-                let parsJson = try JSONDecoder().decode(User.self, from: data)
-                print(parsJson)
-                self.showAlert(withStatus: .success)
-            } catch let error {
-                print(error.localizedDescription)
-                self.showAlert(withStatus: .failed)
-            }
-        }.resume()
-    }
-    
-}
