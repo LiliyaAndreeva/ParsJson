@@ -17,7 +17,7 @@ final class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        getUser(user)
     }
     
     private func getUser(_ user: User) {
