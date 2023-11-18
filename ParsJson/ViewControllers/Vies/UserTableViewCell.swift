@@ -22,10 +22,17 @@ class UserTableViewCell: UITableViewCell {
         userNameLabel.text = "\(user.username)"
         emailLabel.text = "\(user.email)"
         
-        let resourse = Kingfisher.KF.ImageResource(downloadURL: URL(string: user.avatar )!)
-        avatarImage.kf.setImage(with: resourse)
+//        let resourse = Kingfisher.KF.ImageResource(downloadURL: URL(string: user.avatar )!)
+//        avatarImage.kf.setImage(with: resourse)
         
-        
+        networkManager.fetchData(from: user.avatar) { result in
+            switch result{
+            case .success(let imageData):
+                self.avatarImage.image = UIImage(data: imageData)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
         
