@@ -9,7 +9,6 @@ import Foundation
 import Alamofire
 
 enum Link {
-    case imageUrl
     case userUrl
     
     var url: URL {
