@@ -10,14 +10,14 @@ import Kingfisher
 
 final class DetailViewController: UIViewController {
 
-    var user: User!
+    var robot: User!
     
     @IBOutlet weak var usersAvatarImageView: UIImageView!
     @IBOutlet weak var usersDescribeLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getUser(user)
+        getUser(robot)
     }
     
     private func getUser(_ user: User) {

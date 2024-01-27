@@ -23,20 +23,19 @@ enum Link {
 final class NetworkingManager {
     static let shared = NetworkingManager()
     
-    private init() {}
     
     //    func fetchUsers <T: Decodable>(_ tupe: T.Type, from url: URL, complition: @escaping(Result<T, NetworkError>) -> Void) {
-    //        
+    //
     //         URLSession.shared.dataTask(with: url) { data, response, error in
     //             if let response = response as? HTTPURLResponse {
     //                 print("response status code: \(response.statusCode)")
     //             }
-    //             
+    //
     //            guard let data = data else {
     //                complition(.failure(.noData))
     //                return
     //            }
-    //            
+    //
     //            do {
     //                let decoder = JSONDecoder()
     ////                decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -90,6 +89,9 @@ final class NetworkingManager {
                 }
             }
         }
+    
+    
+    private init() {}
     }
 
 
